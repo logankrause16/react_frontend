@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from './App';
-import './index.css';
+import DataGrid from './features/datagrid/Datagrid';
 
 ReactDOM.render(
-  <App />,
+  <Router>
+    <Switch>
+      <Route exact path='/' component={App}></Route>
+      <Route path='/datagrid' component={ DataGrid }></Route>
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
