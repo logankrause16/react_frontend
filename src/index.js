@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Features
 import App from './App';
-import DataGrid from './features/components/datagrid/Datagrid';
+import DataGrid from './features/shared/datagrid/Datagrid';
 import Map from './features/components/map/Map';
 import Constraints from './features/components/constraints/Constraints';
 import Navbar from './features/shared/navbar/Navbar'
@@ -20,7 +20,6 @@ ReactDOM.render(
     <Router history={createBrowserHistory()}>
       <Switch>
         <Route exact path='/' component={App}></Route>
-        <Route path='/datagrid' component={ DataGrid }></Route>
         <Route path='/map' component={ Map }></Route>
         <Route path='/constraints' component={ Constraints }></Route>
       </Switch>
