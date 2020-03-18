@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Datagrid from '../../shared/datagrid/Datagrid';
+import Getdata from '../../shared/services/getData';
 
 class Constraints extends Component {
 
@@ -15,12 +16,20 @@ class Constraints extends Component {
             ]
         }
     }
+
     render() {
         return (
             <div>
                 <Datagrid tableName="constraints" headers={this.state.headers} data={this.state.data} />
+                <Getdata />
+            </div>    
+        )
+        /* (
+            <div>
+                <Datagrid tableName="constraints" headers={this.state.headers} data={this.state.data} />
+                <Getdata /> 
             </div>
-        );
+        ); */
     }
 }
 

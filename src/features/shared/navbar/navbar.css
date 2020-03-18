@@ -9,3 +9,7 @@ ul {
 li {
     float: left;
 }
+
+.navbar {
+    z-index: 2;
+}
