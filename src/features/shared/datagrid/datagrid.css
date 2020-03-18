@@ -1,0 +1,331 @@
+    /* Input Classes */
+
+    input[type=text], input[type=submit], input[type=password] {
+      border: solid 1px #ddd;
+      margin: 0.5rem;
+      padding: 0.5rem;
+      text-align: left;
+  }
+
+  /* HTML-only validation; See https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Data_form_validation */
+
+  input.validate:invalid {
+      border: 1px solid red;
+  }
+
+  input.validate:valid {
+      border: 1px solid green;
+  }
+
+  input[type="submit"] {
+      /* Don't use validation highlighting for submit buttons */
+      border: 1px solid #ddd;
+  }
+
+  /* End input classes*/
+
+  /* Start Table Classes/Rules */
+
+  table {
+      border-collapse: collapse;
+      width: 100%;
+      --table-border-color: #ccc;
+      --table-alt-row-color: #ececec;
+      --table-selected-cell: #2a2a2a;
+      --table-row-highlight-color: #E0FFFF;
+  }
+
+  table thead {
+      border-bottom: 2px solid var(--fg);
+      /* Uses same colors as inverted-colors class */
+  }
+
+  table th {
+      font-weight: bolder;
+      white-space: nowrap;
+      cursor: pointer;
+  }
+
+  table.zebra-stripe tr:nth-child(even) {
+      background: var(--table-alt-row-color);
+  }
+
+  table td {
+      box-sizing: border-box;
+      font-variant-numeric: tabular-nums;
+  }
+
+  table td, table th {
+      text-align: left;
+      padding: 0.1rem 0.5rem;
+      border: 0;
+  }
+
+  table th.numerical, table td.numerical {
+      text-align: right;
+  }
+
+  table td input, table td input[type="text"] {
+      margin: 0;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      height: var(--font-size);
+      color: var(--fg);
+      font-size: var(--font-size);
+      font-family: var(--font-family)
+  }
+
+  /* Highlight tables row on hover:
+   *   IF the row has the "highlight" class
+   *   ELSE IF the table has the "highlight-row-on-hover" AND the mouse is hovering over that row
+   */
+
+  tr.highlight, table.highlight-rows-on-hover tr:hover {
+      background-color: var(--table-row-highlight-color) !important;
+  }
+
+  /* End Table Classes/Rules */
+
+  /* We use a HTML table to displayy the original ATO along with its' line numbers
+   *
+   * The ATO is structured data, so displaying it in a monospace font with whitespace preserved seems
+   * to make sense. Also, the GENTEXT section almost always relies on monospace font to create tables
+   * and other visually aligned text.
+   */
+
+  table.original-ato-text {
+      white-space: pre;
+      font-family: monospace;
+  }
+
+  /* The first TD in each row is always the line number */
+
+  table.original-ato-text td:nth-child(1) {
+      user-select: none;
+      /* Don't include the line number TD when the user is selecting text from the ATO view */
+      text-align: right;
+      /* Right align so that the ones place lines up for our line numbers */
+      background-color: #f5f5f5;
+      /* Make the line numbers stand out from the ATO's text by using a very faint border and background color */
+      border-right: 1px solid #e3e3e3;
+      padding: 0 10px;
+  }
+
+  /* Highlight the ATO line number currently "selected" by the URL fragment.
+
+  Documentation: https://developer.mozilla.org/en-US/docs/Web/CSS/:target
+  Example:
+      URL: http://foo.com/index#foo
+      Would highlight an element such as: <tr id="foo"><td>12</td><td>SOME TEXT</td></tr>
+  */
+
+  table.original-ato-text tr:target td:nth-child(2) {
+      background-color: yellow;
+  }
+
+  /* Start our Spread Sheet like Classes, e.g. for the GAT Flow Matrix (GFM)*/
+
+  table#gfm, table#contractBoard, table#constraints {
+      width: 100%;
+  }
+
+  table.spread-sheet thead {
+      /* Don't allow user's to click and drag on the header -- breaks our drag and drop logic */
+      user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+  }
+
+  table.spread-sheet td, table.spread-sheet th {
+      border: 1px solid var(--table-border-color);
+  }
+
+  table.spread-sheet td {
+      padding: 0;
+      /* Let the input take up the full cell. This also makes the input's border to but directly against the cell's border */
+      white-space: nowrap;
+      /* Wrapping makes a lot of our content look odd. */
+  }
+
+  table.spread-sheet th {
+      padding: 2px 2px 2px 5px;
+      /* This table's cells use inputs with borders this size, so this should make the headers match in position. */
+  }
+
+  table.spread-sheet td span.spread-sheet-value {
+      color: transparent;
+      /* We want to display this text/value so the table cell is sized correctly, but it has to be transparent so the input display's correcly. */
+      display: inline-block;
+      /* In order to use padding predictably, we need this to be a block element. */
+      padding: 3px 3px 3px 6px;
+      /* Mimic the GFM cell input's padding and border so the table sizes correctly. */
+  }
+
+  table.spread-sheet td input {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border: 2px solid transparent;
+      /* Only show the border when this input has focus */
+      border-left-width: 5px;
+      /* Make the left border slightly larger for emphasis */
+      padding: 1px;
+  }
+
+  table.spread-sheet td input:focus {
+      border-color: #07C;
+      /* When the user is focused on an input, show that clearly by making our border a bright blue (normally transparent so the text will not move) */
+  }
+
+  /* Show disabled inputs by using a darker background color for the border (which normally turns blue on focus and darker background */
+
+  table.spread-sheet td input:read-only:focus {
+      border-color: rgba(1, 1, 1, 0.5);
+      background: rgba(1, 1, 1, 0.2);
+      /* If their browser supports it, show a striped background when the input is readonly */
+      background: repeating-linear-gradient(-55deg, rgba(1, 1, 1, 0.1), rgba(1, 1, 1, 0.1) 10px, rgba(1, 1, 1, 0.2) 10px, rgba(1, 1, 1, 0.2) 20px);
+  }
+
+  /* Backup readonly class for IE and Firefox which don't support the :read-only selector. I had to duplicate the CSS above because it doesn't work otherwise. */
+
+  table.spread-sheet td input.readonly:focus {
+      border-color: rgba(1, 1, 1, 0.5);
+      background: rgba(1, 1, 1, 0.2);
+      /* If their browser supports it, show a striped background when the input is readonly */
+      background: repeating-linear-gradient(-55deg, rgba(1, 1, 1, 0.1), rgba(1, 1, 1, 0.1) 10px, rgba(1, 1, 1, 0.2) 10px, rgba(1, 1, 1, 0.2) 20px);
+  }
+
+  table.spread-sheet td {
+      position: relative;
+      /* Required for our change icon to work (so it's position is relative to the cell and not the panel */
+  }
+
+  table.spread-sheet td>div.value-changed-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: var(--z-index-triangle-icon);
+      border-left: var(--triangle-icon-border-width) solid transparent;
+      border-bottom: 0.0rem solid transparent;
+      border-top: var(--triangle-icon-border-width) solid orange;
+  }
+
+  table.spread-sheet td>div.conflict-icon {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: var(--z-index-triangle-icon);
+      border-left: var(--triangle-icon-border-width) solid transparent;
+      border-top: 0.0rem solid transparent;
+      border-bottom: var(--triangle-icon-border-width) solid red;
+  }
+
+  table.spread-sheet td.context-button, table.spread-sheet th.context-button {
+      width: 20px;
+      /* The icons are ~ 19.9px, so shrink-wrap these TDs to fit them (looks cleaner) */
+      min-width: 1px;
+      /* Force empty cells (typically the header) to take up SOME width. Breaks if removed? */
+      padding: 0;
+      /* Shrinkwrap the cell around the button */
+      border-left: none;
+      /* We have two context-button TDs, one for drag and drop handles and another for the menu button. So let's not show the border between them. */
+      border-right: none;
+  }
+
+  table.spread-sheet td.context-button div.dropdown>button {
+      margin: 0;
+      /* we want the button to take up the minimum amount of space */
+      padding: 0;
+      background: none;
+  }
+
+  table.spread-sheet td.grab-handle {
+      cursor: grab;
+  }
+
+  /* Kevin wants to show all GFM columns, even those that do not currently work. So indicate that they
+   * are disabled/broken via cursor (they also have no input element). - JZ
+   */
+
+  th.broken-gfm-cell, td.broken-gfm-cell {
+      cursor: not-allowed;
+  }
+
+  .hideStuff {
+      visibility: hidden;
+  }
+
+  /* END GAT Flow Matrix (GFM) DATA ENTRY ERROR POPUP CLASSES */
+
+  /* START GAT Flow Matrix (GFM) Coloring
+   *
+   * Mission Type             Color   HEX
+   * ESC                      Blue    0A576D
+   * AI/STRIKE/DT             Green   70A30A
+   * SEAD                     Magenta 8C0953
+   * TAL/SAR/SOF              Orange  AF5E0B
+   * Support/C2/ISR/Tankers   Black
+   *
+   * We color the GFM rows two different ways. One is always showing, which is the mission type color
+   * indicator. This is a 20px cell in the table, which has the background color of the mission type.
+   * The second, is user-togglable and colors the GFM rows TEXT using that same color defined by the
+   * mission type.
+   */
+
+  th[data-col-name="mission-type-color-indicator"], td.mission-type-color-indicator {
+      width: 5px !important;
+      /* We think the skinny color indicators look best */
+  }
+
+  td.mission-type-color-indicator {
+      background-color: black;
+      /* If the Mission doesn't have a more specific color, use black */
+  }
+
+  .ColorRowsByMission tr.ESC td input, .ColorRowsByMission tr.OCA td input {
+      color: #0A576D;
+  }
+
+  tr.ESC td.mission-type-color-indicator, tr.OCA td.mission-type-color-indicator {
+      background-color: #0A576D;
+  }
+
+  .ColorRowsByMission tr.AI td input, .ColorRowsByMission tr.STRIKE td input, .ColorRowsByMission tr.DT td input {
+      color: #70A30A;
+  }
+
+  tr.AI td.mission-type-color-indicator, tr.STRIKE td.mission-type-color-indicator, tr.DT td.mission-type-color-indicator {
+      background-color: #70A30A;
+  }
+
+  .ColorRowsByMission tr.SEAD td input, .ColorRowsByMission tr.DEAD td input {
+      color: #8C0953;
+  }
+
+  tr.SEAD td.mission-type-color-indicator, tr.DEAD td.mission-type-color-indicator {
+      background-color: #8C0953;
+  }
+
+  .ColorRowsByMission tr.TAL td input, .ColorRowsByMission tr.SAR td input, .ColorRowsByMission tr.SOF td input, .ColorRowsByMission tr.CSAR td input {
+      color: #AF5E0B;
+  }
+
+  tr.TAL td.mission-type-color-indicator, tr.SAR td.mission-type-color-indicator, tr.SOF td.mission-type-color-indicator, tr.CSAR td.mission-type-color-indicator {
+      background-color: #AF5E0B;
+  }
+
+  .ColorRowsByMission tr.C2 td input, .ColorRowsByMission tr.ISR td input, .ColorRowsByMission tr.TANKER td input, .ColorRowsByMission tr.AAR td input, .ColorRowsByMission tr.CMD td input {
+      color: #000000;
+  }
+
+  /* END GAT Flow Matrix (GFM) Coloring */
+
+  .firstCellSizing {
+      width: 50px;
+  }
+
+  th {
+      color: var(--fg);
+  }
