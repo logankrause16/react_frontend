@@ -1,10 +1,14 @@
 import SettingsIcon from '@material-ui/icons/Settings';
+import Dehaze from '@material-ui/icons/Dehaze';
+import Publish from '@material-ui/icons/Publish';
+import Dropdown from 'react-bootstrap/Dropdown'
 import React, { Component } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import UploadModal from '../navbar/upload-modal/UploadModal';
 import './navbar.css';
+import { NavDropdown } from 'react-bootstrap';
 
 class NavBar extends Component {
 
@@ -24,7 +28,7 @@ class NavBar extends Component {
         return (
             <div>
                 <Navbar bg='dark' variant='dark'>
-                    <Navbar.Brand href=''>Sidebar</Navbar.Brand>
+                    <Navbar.Brand href=''><Dehaze /></Navbar.Brand>
                     <Nav className='mr-auto'>
                         <Nav.Link href='/map'>Map</Nav.Link>
                         <Nav.Link href='/gfm'>GFM</Nav.Link>
@@ -33,7 +37,10 @@ class NavBar extends Component {
                         <Nav.Link href='/rfi'>RFI</Nav.Link>
                         <Nav.Link href='/notes'>Notes</Nav.Link>
                         <Nav.Link href='/chat'>Chat</Nav.Link>
-                        <UploadModal />
+                        <NavDropdown title='Mission' id='basic-nav-dropdown'>
+                            <NavDropdown.Item ><UploadModal /></NavDropdown.Item>
+                            <NavDropdown.Item>View List</NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                     <Button variant='outline-info'><SettingsIcon /></Button>
                 </Navbar>

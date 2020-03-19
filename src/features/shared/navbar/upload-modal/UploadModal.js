@@ -15,7 +15,7 @@ class UploadModal extends Component {
         return (    
             <>
                 <Button variant='dark' onClick={() => this.setState({ showModal: true })}>
-                    Modal
+                    Upload File
                 </Button>
     
                 <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
