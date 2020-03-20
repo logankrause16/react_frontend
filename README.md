@@ -28,6 +28,6 @@ Clone the repo, then using the `dir` or `cd` command, go into where it is instal
 Run `npm install` or `npm i` to install all dependent packages.
 
 ## Run 
-To run the project, open command prompt or PowerShell and execute: `npm start` this will execute `npm i && craco start` to be sure all dependencies are installed and to start resium (the react specific version of cesium)
+To run the project, open command prompt, PowerShell or your Linux Terminal and execute: `npm start` this will execute `npm i && craco start` to be sure all dependencies are installed and to start resium (the react specific version of cesium)
 
 
