@@ -21,10 +21,10 @@ class ConstraintModal extends Component {
 
                 <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                     <Modal.Header>
-                        <Modal.Title>Upload</Modal.Title>
+                        <Modal.Title>Constraint Modal</Modal.Title>
                     </Modal.Header>    
                     <Modal.Body>
-                        Please Upload a flippin file
+                        Upload a constraint structure
                     </Modal.Body>
 
                     <Modal.Footer>

@@ -14,13 +14,13 @@ class UploadModal extends Component {
     render() {
         return (    
             <>
-                <Button variant='dark' onClick={() => this.setState({ showModal: true })}>
+                <div onClick={() => this.setState({ showModal: true })}>
                     Upload File
-                </Button>
+                </div>
     
                 <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                     <Modal.Header>
-                        <Modal.Title>Upload</Modal.Title>
+                        <Modal.Title>Upload File</Modal.Title>
                     </Modal.Header>    
                     <Modal.Body>
                         Please Upload a flippin file
