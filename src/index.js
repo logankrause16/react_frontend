@@ -12,7 +12,6 @@ import Navbar from './features/shared/navbar/Navbar'
 // Styling
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import { ContractBoard } from './features/components/contract-board/Contractboard';
 
 ReactDOM.render(
   <div>
@@ -22,7 +21,6 @@ ReactDOM.render(
         <Route exact path='/' component={ App }></Route>
         <Route path='/map' component={ Map }></Route>
         <Route path='/constraints' component={ Constraints }></Route>
-        <Route path='/contracts' component={ ContractBoard }></Route>
       </Switch>
     </Router>
   </div>,

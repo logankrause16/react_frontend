@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import App from './App';
-import DataGrid from './features/datagrid/Datagrid';
 
 const BasicExample = () => {
   <Router>
